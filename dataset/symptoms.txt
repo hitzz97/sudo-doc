@@ -1,0 +1,9 @@
+Acne:Painful lump beneath the surface of skin,Pimples which are papules with pus at their tips
+Athletes foot:itching, stinging,and burning between your toes,blisters on your feet that itch.
+chicken pox:itchy blister rash,Fever,fatigue
+eczema:Dark colored patches of skin,Areas of swelling
+herpes:painful sores in the genital area
+Hives:muscle aches,painful urination,tingling, burning or itching sensation in the area where blisters will appear.
+psoriasis:red, raised, inflamed patches of skin.,whitish-silver scales or plaques on the red patches
+Rosacea:Enlarged nose.,Facial redness
+Wrats:grainy bumps,Flesh-colored or whiteish tan,Rough to the touch.
