@@ -1,0 +1,7 @@
+
+flask
+
+opencv-python
+scikit-learn
+pandas
+xlrd

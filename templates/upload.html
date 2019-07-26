@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var x='x';
+  			$('a#process_input').bind('click',function(){
+  				var s='<div class="sentbo'+x+'"'+' style="border:10px solid transparent;border-radius:45%;text-align:center;float:right;font-size: 20px;width:49%;background-color:#e4ffce;" >'
+  				$(".sent").append(s);
+  				var cls='.sentbo'+x
+  				$(cls).append($('input[name="proglang"]').val());
+  				$(cls).append("<br>");
+  				x=x+'x';
+  				$.getJSON('/background_process',{
+  					proglang:$('input[name="proglang"]').val(),
+  				},function(data){
+  					$(".sent").append(data);
+  					$(".sent").append("<br>");
+  					document.getElementById('txtLocation').value="";
+  				});
+  				return false;
+  			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function(e) {
+		    $('a#process_input2').bind('click',function(e){
+		    	e.preventDefault();
+		        var form_data = new FormData($('#upload-file')[0]);
+				document.getElementById("overlay").style.display="block";
+		        $.ajax({
+		            type: 'POST',
+		            url: '/upload',
+		            data: form_data,
+		            contentType: false,
+		            cache: false,
+		            processData: false,
+		            success: function(data) {
+				document.getElementById("overlay").style.display="none";
+                		console.log(data);
+                		$(".sent").append(data);
+  						$(".sent").append("<br>");
+
+
+            		},
+		        });
+		    });
+		});
+	</script>
+	<script type="text/javascript">
+			function readURL(input) {
+	            if (input.files && input.files[0]) {
+	                var reader = new FileReader();
+
+	                reader.onload = function (e) {
+	                    $('#blah')
+	                        .attr('src', e.target.result)
+	                        .width(150)
+	                        .height(200);
+	                };
+	                var d = new Date();
+	                d=d.getSeconds()
+	                var s='<p><div style="width:50%;border:5px solid transparent;float:right;text-align:center;border-radius:45%;"><img id="blah" name="h'+d.toString() +'"'+ 'src="#" alt="" style="border:15px solid #e4ffce;border-width: 51%;border-top-left-radius:15px;border-top-right-radius:15px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;" /></div></p> '
+	                $(".sent").append(s)
+	                reader.readAsDataURL(input.files[0]);
+	            }
+	        }
+	</script>
+<script  type="text/javascript">
+	$(function(e) {
+			$(".div2").hide();
+			$('a#xxx').bind('click',function(e){
+				$(".div1").remove();
+				$(".div2").show();
+			});
+	});
+	</script>
+<style>
+	#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+	</style>
+	
+</head>
+<body class="body">
+<div id="overlay" ><div id="text">Uploading.</div></div>
+   <div class="div1" style="width:100%;height:auto;border:3px solid gray;">
+        <div  style="padding-top:10px;border:4px solid grad;height:100px;text-align:center;width:100%;font-family:Helvetica;font-size:80px;background-image: linear-gradient(to bottom right,#0311b2, #ededed);background-repeat:no-repeat;">
+    	     <h2 style="display: block;font-size:65px;margin-block-start: 0.01em;margin-block-end: 0.63em;margin-inline-start: 0px;margin-inline-end: 0px;
+    font-weight: bold;">Sudo Doctor</h2>
+        </div>
+
+        <div style="border:1px solid gray;height:85px;text-align:center;width:100%;font-family:Arial;font-size:13px;margin-block-start: 0.03em;">
+           
+              <p >Home</p><p>About</p><p>Contact Us</p>
+	  
+	    </div>
+      <div  style="border:1px solid transparent;height:274px;text-align:center;width:1325px;font-family:Arial;font-size:25px;text-align:center;color:#ba1b0d;background-color:transparent;background-repeat:no-repeat;">
+	
+        <div  style="border:2px solid transparent;height:270px;float:left;width=500px;">
+	          <img src="https://thumbs.dreamstime.com/t/female-doctor-smiling-background-patient-bed-two-doctors-94562446.jpg" alt="Smiley face" height="270" width="272">
+         </div>
+	  
+         <div style="border:2px solid transparent;height:270px;float:right;width=500px;">
+             <img src="https://image.shutterstock.com/image-photo/smiling-doctor-posing-arms-crossed-260nw-519507367.jpg" alt="Smiley face" height="270" width="272">
+        </div>
+
+
+        <div class="box33" style="border:3px solid transparent;height:270px;float:center;width=300px;background-color:image;background-color:transparent;background-repeat:no-repeat;">
+  
+		       <h2>Appointment Window</h2>
+		            <form action=" " method="POST">
+		                <label>Name:</label><input  type="text" name="name" ><br>
+		                <label>Age:</label><input type="number" name="age"><br>
+		                <label>Gender:</label><input type="text" name="gender">
+		                   <br><br>
+		                 <a href="#" id="xxx"><button  id="bt1362" align="center">Take Appointment</button></a>
+		            </form>
+        </div>
+	  
+     </div>
+	 <div  style="border:1px solid transparent;height:150px;text-align:center;width:100%;font-family:Arial;font-size:25px;text-align:center;color:#ba1b0d;background-image: linear-gradient(to bottom left,#0311b2, #ededed);background-repeat:no-repeat;">
+    	<p>Hosted, maintained and Developed By <br>Team INCEPTION</p>
+		<p style="font-size:15px;">Amit Raj, Hitesh Kumar kushwaha, Shubham pandey</p>
+ 
+     </div>
+
+</div>
+<div class="div2" >
+     <div class="prog" style="width:100%;height:45px;border:1px solid transparent;background-color:#23ce10;border-top-left-radius:15px;border-top-right-radius:15px;">
+	
+	        <h2 style="margin-left:59px;top:12px;">Dr App</h2>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxs5UuxlK0WeEABrC-PYohLAweo1ukDJH5HnhwwThPxbxswE1J" style="border-radius:100%;width:30px;height:30px;position: absolute;top: 22px;left: 20px;">
+	        
+	</div>
+	
+     <div class="sent" style="border: 1px solid gray;width:100%;height:480px;position:relative;-moz-appearance: textfield-multiline;-webkit-appearance: textarea; font: medium -moz-fixed; font: -webkit-small-control; overflow: auto;padding: 2px; resize:none;">
+        <div style="width:53%;height:auto;border-radius:45%;text-align:center;border:1px solid transparent;background-color:#e4ffce;font-size:20px;">Hi! <br>This is your personal doctor.<br>Feel free to write down any symptoms you feel.<br></div>
+     </div>
+	 
+	 
+     <div   style="background-color:#23ce10;border:1px solid transparent;width:100%;height:74px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;">
+      <div style="width:49%;height:25px ;border:1px solid transparent;background-color:#23ce10;padding-bottom:10px;float:right;padding-bottom:10px;">
+           <marquee><p> Tip:- 1.> Enter the symptoms comma(,) seperated without any space.(for eg:- fever,headache,cough)  2.> When replying for a query type "yes" or "no" only.</p></marquee>
+       </div>
+ 
+     <div style="width:50%;height:37px ;background-color:#23ce10;float:left;">
+		
+		    <form method="GET">
+			     <input type="text" id="txtLocation" size=20 list="suggest" name="proglang" style="width:80%;height:25px;border-radius:20px;margin-left:10px;">
+			     <a href="#" id="process_input"><button style="border-radius:20px;width:60px;text-align: center;font-family: Arial;height:25px;">Send</button></a>
+		    </form>
+     </div>
+   
+         <div style="background-color:#23ce10;width:29%;height:35px;float:left;border-bottom-left-radius:15px;border-bottom-right-radius:15px;">
+	            <form id="upload-file" method="POST" enctype="multipart/form-data">
+                      <label for="file" style="height:25px;margin-left:20px;"></label>
+                     <input id="imgSel" class="file" type="file" name="file" onchange="readURL(this)" style="height:28px ; width:180px;position:relative;margin-top:08px;border-radius: 10px;">
+                      <a href="#" id="process_input2" onclick="uploadFile()"><button style="margin-left: 10px;height:29px;width:60px;border-radius: 15px;">Upload</button></a>
+	            </form>
+         </div> 
+		 
+         <div style="width:69%;height:25px ;border:1px solid transparent;background-color:#23ce10;padding-bottom:10px;float:right;padding-bottom:8px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;">
+                <marquee><p> Tip:- 1.After selecting image press the submit button. </p></marquee>
+         </div> 
+		 
+     </div>
+ </div>
+</body>
+
+
+</html>

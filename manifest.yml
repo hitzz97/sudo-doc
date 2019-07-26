@@ -1,0 +1,8 @@
+applications:
+  - path: .
+    name: testtttttez 
+    memory: 256M
+    domain: eu-gb.mybluemix.net
+    instances: 1
+    disk_quota: 1024M
+
